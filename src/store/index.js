@@ -107,7 +107,7 @@ export default createStore({
       }
 
       try {
-        let response = await axios.get('http://127.0.0.1:8000/api/user')
+        let response = await axios.get('https://h-works.000webhostapp.com/api/user')
         console.log(response.data);
         commit('setUser', response.data)
 
@@ -119,12 +119,12 @@ export default createStore({
 
     async register({ dispatch }, creds) {
       console.log(creds);
-      let response = await axios.post('http://127.0.0.1:8000/api/register', creds)
+      let response = await axios.post('https://h-works.000webhostapp.com/api/register', creds)
       return dispatch('attempt', response.data.token)
     },
 
     logout({commit}) {
-      return axios.post('http://127.0.0.1:8000/api/logout').then(res => {
+      return axios.post('https://h-works.000webhostapp.com/api/logout').then(res => {
         commit('setToken', null)
         commit('setUser', null)
         
@@ -132,19 +132,19 @@ export default createStore({
     },
 
     getCategories({ commit }) {
-      axios.get('http://127.0.0.1:8000/api/dashboard').then(res => {
+      axios.get('https://h-works.000webhostapp.com/api/dashboard').then(res => {
         
           commit('getCategories', res.data)
       })
     },
 
     addCategory({commit}, NewCategory) {
-      axios.post('http://127.0.0.1:8000/api/category/store', NewCategory)
+      axios.post('https://h-works.000webhostapp.com/api/category/store', NewCategory)
       commit('addCategory', NewCategory)
     },
 
     deleteCat({ commit, dispatch }, category) {
-      axios.delete('http://127.0.0.1:8000/api/category/' + category.id).then(res => {
+      axios.delete('https://h-works.000webhostapp.com/api/category/' + category.id).then(res => {
           if(res.status == 200) {
               commit('deleteCat', category)
               dispatch('getCategories')
@@ -153,7 +153,7 @@ export default createStore({
     },
 
     addNote({commit}, NewNote) {
-      axios.post('http://127.0.0.1:8000/api/notes/store', NewNote).then(res => {
+      axios.post('https://h-works.000webhostapp.com/api/notes/store', NewNote).then(res => {
         if (res.status == 200) {
             commit('addNote')
         }
@@ -161,7 +161,7 @@ export default createStore({
     },
 
     deleteNote({ commit }, note) {
-      axios.delete('http://127.0.0.1:8000/api/notes/' + note.id).then(res => {
+      axios.delete('https://h-works.000webhostapp.com/api/notes/' + note.id).then(res => {
           if(res.status == 200) {
               commit('deleteNote', note)
           }
@@ -169,14 +169,14 @@ export default createStore({
     },
 
     updateNote({ commit }, data) {
-      axios.put('http://127.0.0.1:8000/api/notes/' + data.id, data).then(res => {
+      axios.put('https://h-works.000webhostapp.com/api/notes/' + data.id, data).then(res => {
           if(res.status == 200) {
               commit('updateNote', data)
           }
       })
     },
     undone({ commit }, data) {
-      axios.put('http://127.0.0.1:8000/api/notes/' + data.id, data).then(res => {
+      axios.put('https://h-works.000webhostapp.com/api/notes/' + data.id, data).then(res => {
           if(res.status == 200) {
               commit('undone', data)
           }
