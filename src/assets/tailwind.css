@@ -1,0 +1,11 @@
+@tailwind base;
+
+@tailwind components;
+.category {
+    @apply relative font-sans text-sm w-full p-2 hover:bg-gray-700 hover:text-purple-200
+}
+.activeCategory {
+    @apply relative font-sans text-sm w-full p-2 bg-gray-700 hover:bg-gray-700 hover:text-purple-200
+}
+
+@tailwind utilities;
