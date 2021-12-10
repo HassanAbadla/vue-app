@@ -92,7 +92,7 @@ export default createStore({
 
     async login({ dispatch }, fields){
       console.log(fields);
-      let response = await axios.post('http://127.0.0.1:8000/api/login', fields)
+      let response = await axios.post('https://h-works.000webhostapp.com/api/login', fields)
       console.log(response.data);
       return dispatch('attempt', response.data.token)
     },
