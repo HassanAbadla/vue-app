@@ -11,9 +11,7 @@
                     <form class="flex flex-col space-y-8 mt-10">
                         <input v-model="email" type="text" placeholder="Email" name="email" class="border text-white rounded py-3 px-3 bg-gray-700 border-gray-700 placeholder-gray-500">
                         <input v-model="password" type="password" placeholder="Passowrd" name="password" class="border text-white rounded py-3 px-3 bg-gray-700 border-gray-700 placeholder-gray-500">
-                    <!-- <router-link @click.prevent="login()" class="border border-purple-600 bg-purple-600 text-white rounded py-3 font-semibold"> -->
                         <button @click.prevent="login" class="border border-purple-600 bg-purple-600 text-white rounded py-3 font-semibold">Log in</button>
-                    <!-- </router-link> -->
                     </form>
                 </div>
 

@@ -91,8 +91,8 @@ export default createStore({
   actions: {
 
     async login({ dispatch }, fields){
-      console.log(fields);
-      let response = await axios.post('https://h-works.000webhostapp.com/api/login', fields)
+      // console.log(mutation.payload);
+      let response = await axios.post('http://mynots.gulfytrend.com/api/api/login', fields)
       console.log(response.data);
       return dispatch('attempt', response.data.token)
     },
@@ -107,7 +107,7 @@ export default createStore({
       }
 
       try {
-        let response = await axios.get('https://h-works.000webhostapp.com/api/user')
+        let response = await axios.get('http://mynots.gulfytrend.com/api/api/user')
         console.log(response.data);
         commit('setUser', response.data)
 
@@ -119,12 +119,12 @@ export default createStore({
 
     async register({ dispatch }, creds) {
       console.log(creds);
-      let response = await axios.post('https://h-works.000webhostapp.com/api/register', creds)
+      let response = await axios.post('http://mynots.gulfytrend.com/api/api/register', creds)
       return dispatch('attempt', response.data.token)
     },
 
     logout({commit}) {
-      return axios.post('https://h-works.000webhostapp.com/api/logout').then(res => {
+      return axios.post('http://mynots.gulfytrend.com/api/api/logout').then(res => {
         commit('setToken', null)
         commit('setUser', null)
         
@@ -132,19 +132,19 @@ export default createStore({
     },
 
     getCategories({ commit }) {
-      axios.get('https://h-works.000webhostapp.com/api/dashboard').then(res => {
+      axios.get('http://mynots.gulfytrend.com/api/api/dashboard').then(res => {
         
           commit('getCategories', res.data)
       })
     },
 
     addCategory({commit}, NewCategory) {
-      axios.post('https://h-works.000webhostapp.com/api/category/store', NewCategory)
+      axios.post('http://mynots.gulfytrend.com/api/api/category/store', NewCategory)
       commit('addCategory', NewCategory)
     },
 
     deleteCat({ commit, dispatch }, category) {
-      axios.delete('https://h-works.000webhostapp.com/api/category/' + category.id).then(res => {
+      axios.delete('http://mynots.gulfytrend.com/api/api/category/' + category.id).then(res => {
           if(res.status == 200) {
               commit('deleteCat', category)
               dispatch('getCategories')
@@ -153,7 +153,7 @@ export default createStore({
     },
 
     addNote({commit}, NewNote) {
-      axios.post('https://h-works.000webhostapp.com/api/notes/store', NewNote).then(res => {
+      axios.post('http://mynots.gulfytrend.com/api/api/notes/store', NewNote).then(res => {
         if (res.status == 200) {
             commit('addNote')
         }
@@ -161,7 +161,7 @@ export default createStore({
     },
 
     deleteNote({ commit }, note) {
-      axios.delete('https://h-works.000webhostapp.com/api/notes/' + note.id).then(res => {
+      axios.delete('http://mynots.gulfytrend.com/api/api/notes/' + note.id).then(res => {
           if(res.status == 200) {
               commit('deleteNote', note)
           }
@@ -169,14 +169,14 @@ export default createStore({
     },
 
     updateNote({ commit }, data) {
-      axios.put('https://h-works.000webhostapp.com/api/notes/' + data.id, data).then(res => {
+      axios.put('http://mynots.gulfytrend.com/api/api/notes/' + data.id, data).then(res => {
           if(res.status == 200) {
               commit('updateNote', data)
           }
       })
     },
     undone({ commit }, data) {
-      axios.put('https://h-works.000webhostapp.com/api/notes/' + data.id, data).then(res => {
+      axios.put('http://mynots.gulfytrend.com/api/api/notes/' + data.id, data).then(res => {
           if(res.status == 200) {
               commit('undone', data)
           }
