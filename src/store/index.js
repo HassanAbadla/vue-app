@@ -92,7 +92,7 @@ export default createStore({
 
     async login({ dispatch }, fields){
       // console.log(mutation.payload);
-      let response = await axios.post('http://mynots.gulfytrend.com/api/api/login', fields)
+      let response = await axios.post('https://mynots.gulfytrend.com/api/api/login', fields)
       console.log(response.data);
       return dispatch('attempt', response.data.token)
     },
@@ -107,7 +107,7 @@ export default createStore({
       }
 
       try {
-        let response = await axios.get('http://mynots.gulfytrend.com/api/api/user')
+        let response = await axios.get('https://mynots.gulfytrend.com/api/api/user')
         console.log(response.data);
         commit('setUser', response.data)
 
